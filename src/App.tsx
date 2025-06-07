@@ -35,50 +35,84 @@ function Navigation() {
   ];
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-4 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <Heart className="w-8 h-8 text-red-500" />
-            <h1 className="text-xl font-bold text-gray-900">LifeGuide AI</h1>
-            <Badge variant="secondary" className="text-xs">
-              MiniMax Powered
-            </Badge>
+    <>
+      {/* Desktop Navigation */}
+      <nav className="bg-white border-b border-gray-200 px-4 py-3 hidden md:block">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <Heart className="w-8 h-8 text-red-500" />
+              <h1 className="text-xl font-bold text-gray-900">LifeGuide AI</h1>
+              <Badge variant="secondary" className="text-xs">
+                MiniMax Powered
+              </Badge>
+            </div>
+            
+            <div className="flex items-center space-x-1 ml-8">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
+                return (
+                  <Link key={item.path} to={item.path}>
+                    <Button
+                      variant={isActive ? "default" : "ghost"}
+                      size="sm"
+                      className="flex items-center space-x-2"
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span>{item.label}</span>
+                    </Button>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-          
-          <div className="hidden md:flex items-center space-x-1 ml-8">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = location.pathname === item.path;
-              return (
-                <Link key={item.path} to={item.path}>
-                  <Button
-                    variant={isActive ? "default" : "ghost"}
-                    size="sm"
-                    className="flex items-center space-x-2"
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span>{item.label}</span>
-                  </Button>
-                </Link>
-              );
-            })}
+
+          <div className="flex items-center space-x-3">
+            <ModalStatus className="hidden lg:block" />
+            <a
+              href="https://github.com/yethikrishna/lifeguide-ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <Github className="w-5 h-5" />
+            </a>
           </div>
         </div>
+      </nav>
 
-        <div className="flex items-center space-x-3">
-          <ModalStatus className="hidden lg:block" />
-          <a
-            href="https://github.com/your-username/lifeguide-ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 hover:text-gray-900"
-          >
-            <Github className="w-5 h-5" />
-          </a>
+      {/* Mobile Header */}
+      <nav className="bg-white border-b border-gray-200 px-4 py-3 md:hidden">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Heart className="w-6 h-6 text-red-500" />
+            <h1 className="text-lg font-bold text-gray-900">LifeGuide AI</h1>
+          </div>
+          <Badge variant="secondary" className="text-xs">
+            MiniMax
+          </Badge>
+        </div>
+      </nav>
+
+      {/* Mobile Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 md:hidden z-50">
+        <div className="flex items-center justify-around">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+            return (
+              <Link key={item.path} to={item.path} className="flex-1">
+                <div className={`flex flex-col items-center py-2 px-1 ${isActive ? 'text-blue-600' : 'text-gray-600'}`}>
+                  <Icon className="w-5 h-5 mb-1" />
+                  <span className="text-xs font-medium">{item.label.split(' ')[0]}</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
-    </nav>
+    </>
   );
 }
 
@@ -87,20 +121,20 @@ function LandingPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
               Your AI-Powered
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600 block sm:inline">
                 {" "}Wellness Companion
               </span>
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 mb-6 md:mb-8 max-w-3xl mx-auto px-4">
               Revolutionary AI wellness companion powered by MiniMax and Modal.com GPU infrastructure.
               Enhanced with $280 AI credits for superior analysis, crisis detection, and personalized coaching.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
               <Link to="/dashboard">
                 <Button size="lg" className="w-full sm:w-auto">
                   Start Your Wellness Journey
@@ -114,29 +148,29 @@ function LandingPage() {
             </div>
 
             {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 px-4">
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">5</div>
-                  <div className="text-gray-600">Specialized AI Agents</div>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1 md:mb-2">5</div>
+                  <div className="text-sm md:text-base text-gray-600">AI Agents</div>
                 </CardContent>
               </Card>
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">$280</div>
-                  <div className="text-gray-600">Modal.com AI Credits</div>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-purple-600 mb-1 md:mb-2">$280</div>
+                  <div className="text-sm md:text-base text-gray-600">AI Credits</div>
                 </CardContent>
               </Card>
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
-                  <div className="text-gray-600">GPU-Powered Support</div>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1 md:mb-2">24/7</div>
+                  <div className="text-sm md:text-base text-gray-600">Support</div>
                 </CardContent>
               </Card>
               <Card>
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">100%</div>
-                  <div className="text-gray-600">Clinical-Grade AI</div>
+                <CardContent className="p-4 md:p-6 text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-orange-600 mb-1 md:mb-2">100%</div>
+                  <div className="text-sm md:text-base text-gray-600">Clinical AI</div>
                 </CardContent>
               </Card>
             </div>
@@ -262,13 +296,13 @@ function ChatPage() {
   const [selectedAgent, setSelectedAgent] = useState('sleep');
   
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-4 md:py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             AI Wellness Chat
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm md:text-base text-gray-600">
             Chat with specialized AI health experts powered by MiniMax
           </p>
         </div>
@@ -283,7 +317,7 @@ function ChatPage() {
 
 function DashboardPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-4 md:py-8">
       <WellnessDashboard />
     </div>
   );
@@ -291,13 +325,13 @@ function DashboardPage() {
 
 function SleepPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-4 md:py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             AI Sleep Coach
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm md:text-base text-gray-600">
             Personalized sleep optimization and coaching
           </p>
         </div>
@@ -309,13 +343,13 @@ function SleepPage() {
 
 function ConsultationPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 py-4 md:py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             Live Wellness Consultations
           </h1>
-          <p className="text-gray-600">
+          <p className="text-sm md:text-base text-gray-600">
             Connect with certified wellness specialists via video, voice, or chat
           </p>
         </div>
@@ -328,7 +362,7 @@ function ConsultationPage() {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
         <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage />} />
