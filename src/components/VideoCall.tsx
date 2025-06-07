@@ -61,31 +61,31 @@ const VideoCall: React.FC = () => {
   const toggleAudio = () => setIsAudioOn(!isAudioOn);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-2 md:p-4 pb-20 md:pb-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-6 text-center">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <Users className="w-6 h-6 text-blue-600" />
-            <h1 className="text-2xl font-bold text-gray-900">Wellness Consultation</h1>
+        <div className="mb-4 md:mb-6 text-center">
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-2">
+            <Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+            <h1 className="text-lg md:text-2xl font-bold text-gray-900">Wellness Consultation</h1>
           </div>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-            <Clock className="w-4 h-4" />
+          <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600">
+            <Clock className="w-3 h-3 md:w-4 md:h-4" />
             <span>Duration: {formatTime(callDuration)}</span>
-            <Badge variant={isConnected ? "default" : "secondary"}>
+            <Badge variant={isConnected ? "default" : "secondary"} className="text-xs">
               {isConnected ? "Connected" : "Connecting..."}
             </Badge>
           </div>
         </div>
 
         {/* Video Interface */}
-        <div className="grid lg:grid-cols-4 gap-6">
+        <div className="grid lg:grid-cols-4 gap-3 md:gap-6">
           {/* Main Video Area */}
           <div className="lg:col-span-3">
             <Card className="overflow-hidden">
               <CardContent className="p-0">
                 {/* Specialist Video */}
-                <div className="relative aspect-video bg-gradient-to-br from-blue-600 to-purple-700 text-white">
+                <div className="relative aspect-video md:aspect-video bg-gradient-to-br from-blue-600 to-purple-700 text-white min-h-[250px] md:min-h-[400px]">
                   <div className="absolute inset-0 flex items-center justify-center">
                     {isConnected ? (
                       <div className="text-center">
@@ -110,7 +110,7 @@ const VideoCall: React.FC = () => {
                   </div>
 
                   {/* User Video (Picture-in-Picture) */}
-                  <div className="absolute bottom-4 right-4 w-32 h-24 bg-gray-800 rounded-lg border-2 border-white/50 overflow-hidden">
+                  <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-20 h-16 md:w-32 md:h-24 bg-gray-800 rounded-lg border-2 border-white/50 overflow-hidden">
                     {isVideoOn ? (
                       <div className="w-full h-full bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center text-white">
                         <span className="text-xl font-bold">You</span>
@@ -132,49 +132,49 @@ const VideoCall: React.FC = () => {
                 </div>
 
                 {/* Call Controls */}
-                <div className="p-6 bg-white border-t">
-                  <div className="flex items-center justify-center gap-4">
+                <div className="p-3 md:p-6 bg-white border-t">
+                  <div className="flex items-center justify-center gap-2 md:gap-4">
                     <Button
                       variant={isAudioOn ? "default" : "destructive"}
                       size="lg"
                       onClick={toggleAudio}
-                      className="rounded-full w-14 h-14"
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14"
                     >
-                      {isAudioOn ? <Mic className="w-6 h-6" /> : <MicOff className="w-6 h-6" />}
+                      {isAudioOn ? <Mic className="w-4 h-4 md:w-6 md:h-6" /> : <MicOff className="w-4 h-4 md:w-6 md:h-6" />}
                     </Button>
 
                     <Button
                       variant={isVideoOn ? "default" : "destructive"}
                       size="lg"
                       onClick={toggleVideo}
-                      className="rounded-full w-14 h-14"
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14"
                     >
-                      {isVideoOn ? <Video className="w-6 h-6" /> : <VideoOff className="w-6 h-6" />}
+                      {isVideoOn ? <Video className="w-4 h-4 md:w-6 md:h-6" /> : <VideoOff className="w-4 h-4 md:w-6 md:h-6" />}
                     </Button>
 
                     <Button
                       variant="destructive"
                       size="lg"
                       onClick={handleEndCall}
-                      className="rounded-full w-14 h-14"
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14"
                     >
-                      <PhoneOff className="w-6 h-6" />
+                      <PhoneOff className="w-4 h-4 md:w-6 md:h-6" />
                     </Button>
 
                     <Button
                       variant="outline"
                       size="lg"
-                      className="rounded-full w-14 h-14"
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14"
                     >
-                      <MessageCircle className="w-6 h-6" />
+                      <MessageCircle className="w-4 h-4 md:w-6 md:h-6" />
                     </Button>
 
                     <Button
                       variant="outline"
                       size="lg"
-                      className="rounded-full w-14 h-14"
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14"
                     >
-                      <Settings className="w-6 h-6" />
+                      <Settings className="w-4 h-4 md:w-6 md:h-6" />
                     </Button>
                   </div>
                 </div>
@@ -183,10 +183,10 @@ const VideoCall: React.FC = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
             {/* Specialist Info */}
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <h3 className="font-semibold mb-4">Consultation Details</h3>
                 <div className="space-y-3">
                   <div>
@@ -211,7 +211,7 @@ const VideoCall: React.FC = () => {
 
             {/* Session Notes */}
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <h3 className="font-semibold mb-4">Session Notes</h3>
                 <div className="space-y-3 text-sm">
                   <div className="p-3 bg-blue-50 rounded-lg">
@@ -230,7 +230,7 @@ const VideoCall: React.FC = () => {
 
             {/* Emergency Button */}
             <Card className="border-red-200">
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <Button 
                   variant="destructive" 
                   className="w-full"
