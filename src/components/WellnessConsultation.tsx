@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +7,7 @@ import { Video, MessageCircle, Phone, Users, Clock, Star } from 'lucide-react';
 import { cometChatService } from '@/services/cometchat';
 
 export function WellnessConsultation() {
+  const navigate = useNavigate();
   const [specialists, setSpecialists] = useState<any[]>([]);
   const [activeCall, setActiveCall] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +42,8 @@ export function WellnessConsultation() {
       
       if (videoCall.success) {
         setActiveCall(videoCall.callId);
-        // In a real app, this would open the video call interface
-        window.open(videoCall.consultationUrl, '_blank');
+        // Navigate to our internal video call interface
+        navigate(videoCall.consultationUrl);
       }
     } catch (error) {
       console.error('Failed to start consultation:', error);
