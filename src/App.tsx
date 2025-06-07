@@ -21,6 +21,7 @@ import { WellnessChat } from '@/components/WellnessChat';
 import { SleepAssessment } from '@/components/SleepAssessment';
 import { ModalStatus } from '@/components/ModalStatus';
 import { WellnessConsultation } from '@/components/WellnessConsultation';
+import VideoCall from '@/components/VideoCall';
 import './App.css';
 
 function Navigation() {
@@ -335,6 +336,7 @@ function App() {
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/sleep" element={<SleepPage />} />
           <Route path="/consultation" element={<ConsultationPage />} />
+          <Route path="/video-call/:callId" element={<VideoCall />} />
         </Routes>
         
         {/* Footer */}
