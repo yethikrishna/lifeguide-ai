@@ -66,10 +66,11 @@ class LifeGuideCometChat {
       
       const callId = `call-${Date.now()}`;
       
+      // Return URL to our internal video call interface
       return {
         success: true,
         callId,
-        consultationUrl: `https://app.cometchat.com/call/${callId}`
+        consultationUrl: `/video-call/${callId}`
       };
     } catch (error) {
       console.error('Video call error:', error);
