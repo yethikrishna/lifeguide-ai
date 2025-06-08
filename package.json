@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.11.1",
   "scripts": {
     "dev": "pnpm install && vite",
     "build": "pnpm install && rm -rf node_modules/.vite-temp && tsc -b && vite build",
