@@ -6,15 +6,15 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { 
   Heart, 
   Moon, 
-  Brain, 
-  AlertTriangle, 
-  Apple, 
+  // Brain,
+  // AlertTriangle,
+  // Apple,
   Home, 
   MessageCircle,
   BarChart3,
-  Settings,
+  // Settings,
   Github,
-  ExternalLink
+  // ExternalLink
 } from 'lucide-react';
 // import { WellnessDashboard } from '@/components/WellnessDashboard';
 import { WellnessChat } from '@/components/WellnessChat';

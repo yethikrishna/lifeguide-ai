@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
+// import { Button } from '@/components/ui/button';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { Input } from '@/components/ui/input';
+// import { Badge } from '@/components/ui/badge';
 import { Loader2, Send, Moon, Heart, Brain, AlertTriangle, Apple } from 'lucide-react';
-import { enhancedAPI } from '@/services/enhancedAPI';
+// import { enhancedAPI } from '@/services/enhancedAPI';
 
 interface Message {
   id: string;
@@ -84,14 +84,15 @@ export function WellnessChat({ selectedAgent, onAgentChange }: WellnessChatProps
     try {
       let response: string;
       
-      // Route to enhanced AI functions with Modal.com integration
-      const chatResult = await enhancedAPI.chatWithAI(input, selectedAgent);
-      response = chatResult.response;
+      // Mocking the API call
+      // const chatResult = await enhancedAPI.chatWithAI(input, selectedAgent);
+      // response = chatResult.response;
+      response = `Mock response for "${input}" from ${selectedAgent}.`;
       
       // Add enhanced features indicator
-      if (chatResult.source === 'modal') {
-        response += "\n\n✨ Enhanced with Modal.com AI ($280 credits)";
-      }
+      // if (chatResult.source === 'modal') {
+      //   response += "\n\n✨ Enhanced with Modal.com AI ($280 credits)";
+      // }
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -129,44 +130,62 @@ export function WellnessChat({ selectedAgent, onAgentChange }: WellnessChatProps
   return (
     <div className="flex flex-col h-[600px] max-w-4xl mx-auto">
       {/* Agent Selector */}
-      <Card className="mb-4">
-        <CardHeader className="pb-3">
-          <CardTitle className="text-lg">Choose Your Wellness Expert</CardTitle>
-        </CardHeader>
-        <CardContent>
+      {/* <Card className="mb-4"> */}
+      <div className="mb-4 border rounded-lg">
+        {/* <CardHeader className="pb-3"> */}
+        <div className="p-4 pb-3">
+          {/* <CardTitle className="text-lg">Choose Your Wellness Expert</CardTitle> */}
+          <h3 className="text-lg font-semibold">Choose Your Wellness Expert (UI Commented)</h3>
+        </div>
+        {/* </CardHeader> */}
+        {/* <CardContent> */}
+        <div className="p-4 pt-0">
           <div className="flex flex-wrap gap-2">
             {agents.map((agent) => {
               const Icon = agent.icon;
               return (
-                <Badge
+                // <Badge
+                //   key={agent.id}
+                //   variant={selectedAgent === agent.id ? "default" : "outline"}
+                //   className={`cursor-pointer p-2 ${selectedAgent === agent.id ? agent.color : 'hover:bg-gray-100'}`}
+                //   onClick={() => onAgentChange(agent.id)}
+                // >
+                <span
                   key={agent.id}
-                  variant={selectedAgent === agent.id ? "default" : "outline"}
-                  className={`cursor-pointer p-2 ${selectedAgent === agent.id ? agent.color : 'hover:bg-gray-100'}`}
+                  className={`cursor-pointer p-2 rounded-md flex items-center border ${selectedAgent === agent.id ? agent.color : 'hover:bg-gray-100'}`}
                   onClick={() => onAgentChange(agent.id)}
                 >
                   <Icon className="w-4 h-4 mr-2" />
                   {agent.name}
-                </Badge>
+                </span>
+                // </Badge>
               );
             })}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+        {/* </CardContent> */}
+      </div>
+      {/* </Card> */}
 
       {/* Chat Area */}
-      <Card className="flex-1 flex flex-col">
-        <CardHeader className="border-b">
+      {/* <Card className="flex-1 flex flex-col"> */}
+      <div className="flex-1 flex flex-col border rounded-lg">
+        {/* <CardHeader className="border-b"> */}
+        <div className="p-4 border-b">
           <div className="flex items-center gap-2">
             {selectedAgentInfo && (
               <>
                 <selectedAgentInfo.icon className="w-5 h-5" />
-                <CardTitle>{selectedAgentInfo.name}</CardTitle>
+                {/* <CardTitle>{selectedAgentInfo.name}</CardTitle> */}
+                <h3 className="text-lg font-semibold">{selectedAgentInfo.name}</h3>
               </>
             )}
           </div>
-        </CardHeader>
+        </div>
+        {/* </CardHeader> */}
         
-        <CardContent className="flex-1 flex flex-col p-0">
+        {/* <CardContent className="flex-1 flex flex-col p-0"> */}
+        <div className="flex-1 flex flex-col p-0">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.map((message) => (
@@ -206,33 +225,50 @@ export function WellnessChat({ selectedAgent, onAgentChange }: WellnessChatProps
           {/* Input Area */}
           <div className="border-t p-4">
             <div className="flex gap-2">
-              <Input
+              {/* <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder={`Ask your ${selectedAgentInfo?.name || 'wellness expert'}...`}
                 disabled={isLoading}
                 className="flex-1"
+              /> */}
+              <input
+                type="text"
+                value={input}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder={`Ask your ${selectedAgentInfo?.name || 'wellness expert'}...`}
+                disabled={isLoading}
+                className="flex-1 border rounded-md p-2"
               />
-              <Button
+              {/* <Button
                 onClick={sendMessage}
                 disabled={!input.trim() || isLoading}
                 size="icon"
+              > */}
+              <button
+                onClick={sendMessage}
+                disabled={!input.trim() || isLoading}
+                className="p-2 bg-blue-500 text-white rounded-md disabled:bg-gray-300 flex items-center justify-center w-10 h-10"
               >
                 {isLoading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
                   <Send className="w-4 h-4" />
                 )}
-              </Button>
+              {/* </Button> */}
+              </button>
             </div>
             
             <div className="text-xs text-gray-500 mt-2 text-center">
               💡 This is for educational purposes only. Always consult healthcare professionals for medical advice.
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+        {/* </CardContent> */}
+      </div>
+      {/* </Card> */}
     </div>
   );
 }

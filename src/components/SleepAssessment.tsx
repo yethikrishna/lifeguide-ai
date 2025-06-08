@@ -26,7 +26,7 @@ export function SleepAssessment() {
   
   const [results, setResults] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [audioUrl, setAudioUrl] = useState<string>('');
+  const [audioUrl] = useState<string>('');
 
   const sleepIssues = [
     'Difficulty falling asleep',

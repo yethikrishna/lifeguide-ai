@@ -8,15 +8,15 @@ interface CometChatConfig {
 }
 
 class LifeGuideCometChat {
-  private config: CometChatConfig;
+  // private config: CometChatConfig; // Unused config
   private isInitialized: boolean = false;
 
   constructor() {
-    this.config = {
-      authKey: '6191dc2b6c28c2c5074f1bb42b97d757a63cf246',
-      appID: 'lifeguide-ai',
-      region: 'us'
-    };
+    // this.config = { // Unused config
+    //   authKey: '6191dc2b6c28c2c5074f1bb42b97d757a63cf246',
+    //   appID: 'lifeguide-ai',
+    //   region: 'us'
+    // };
   }
 
   // Initialize CometChat for wellness consultations
@@ -37,7 +37,7 @@ class LifeGuideCometChat {
   }
 
   // Create wellness consultation room
-  async createWellnessConsultation(patientId: string, specialistType: string): Promise<{
+  async createWellnessConsultation(_patientId: string, specialistType: string): Promise<{ // patientId marked as unused
     roomId: string;
     joinUrl: string;
     consultationType: string;

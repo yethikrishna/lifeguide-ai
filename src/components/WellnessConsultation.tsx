@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'; // React removed
 import { useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Video, MessageCircle, Phone, Users, Clock, Star } from 'lucide-react';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { Button } from '@/components/ui/button';
+// import { Badge } from '@/components/ui/badge';
+// Phone and Users removed from this import
+import { Video, MessageCircle, Clock, Star } from 'lucide-react';
 import { cometChatService } from '@/services/cometchat';
 
 export function WellnessConsultation() {
@@ -62,17 +63,23 @@ export function WellnessConsultation() {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+      {/* <Card> */}
+      <div className="border rounded-lg">
+        {/* <CardHeader> */}
+        <div className="p-4 border-b">
+          {/* <CardTitle className="flex items-center gap-2"> */}
+          <h2 className="text-xl font-semibold flex items-center gap-2">
             <Video className="w-6 h-6 text-blue-600" />
-            Live Wellness Consultations
-          </CardTitle>
+            Live Wellness Consultations (UI Commented)
+          </h2>
+          {/* </CardTitle> */}
           <p className="text-gray-600">
             Connect with certified wellness specialists via video, voice, or chat
           </p>
-        </CardHeader>
-        <CardContent>
+        </div>
+        {/* </CardHeader> */}
+        {/* <CardContent> */}
+        <div className="p-4">
           {/* Emergency Button */}
           <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-center justify-between">
@@ -80,28 +87,39 @@ export function WellnessConsultation() {
                 <h3 className="font-semibold text-red-900">Emergency Consultation</h3>
                 <p className="text-red-700 text-sm">Need immediate wellness support?</p>
               </div>
-              <Button 
+              {/* <Button
                 onClick={sendEmergencyMessage}
                 className="bg-red-600 hover:bg-red-700"
+              > */}
+              <button
+                onClick={sendEmergencyMessage}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
               >
                 🚨 Emergency Help
-              </Button>
+              {/* </Button> */}
+              </button>
             </div>
           </div>
 
           {/* Available Specialists */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {specialists.map((specialist) => (
-              <Card key={specialist.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-4">
+              // <Card key={specialist.id} className="hover:shadow-lg transition-shadow">
+              <div key={specialist.id} className="border rounded-lg hover:shadow-lg transition-shadow">
+                {/* <CardContent className="p-4"> */}
+                <div className="p-4">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold">{specialist.name}</h3>
-                    <Badge 
+                    {/* <Badge
                       variant={specialist.status === 'online' ? 'default' : 'secondary'}
                       className={specialist.status === 'online' ? 'bg-green-100 text-green-800' : ''}
+                    > */}
+                    <span
+                      className={`px-2 py-0.5 text-xs rounded-full ${specialist.status === 'online' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-700'}`}
                     >
                       {specialist.status}
-                    </Badge>
+                    </span>
+                    {/* </Badge> */}
                   </div>
                   
                   <p className="text-sm text-gray-600 mb-2">{specialist.specialty}</p>
@@ -112,29 +130,43 @@ export function WellnessConsultation() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button
+                    {/* <Button
                       size="sm"
                       onClick={() => startVideoConsultation(specialist.id, specialist.specialty)}
                       disabled={specialist.status !== 'online' || isLoading}
                       className="flex-1"
+                    > */}
+                    <button
+                      onClick={() => startVideoConsultation(specialist.id, specialist.specialty)}
+                      disabled={specialist.status !== 'online' || isLoading}
+                      className="flex-1 px-3 py-1.5 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-300 flex items-center justify-center"
                     >
                       <Video className="w-4 h-4 mr-1" />
                       Video
-                    </Button>
+                    {/* </Button> */}
+                    </button>
                     
-                    <Button
+                    {/* <Button
                       size="sm"
                       variant="outline"
                       onClick={() => startVideoConsultation(specialist.id, specialist.specialty)}
                       disabled={specialist.status !== 'online'}
                       className="flex-1"
+                    > */}
+                    <button
+                      onClick={() => startVideoConsultation(specialist.id, specialist.specialty)}
+                      disabled={specialist.status !== 'online'}
+                      className="flex-1 px-3 py-1.5 text-sm border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 disabled:bg-gray-100 flex items-center justify-center"
                     >
                       <MessageCircle className="w-4 h-4 mr-1" />
                       Chat
-                    </Button>
+                    {/* </Button> */}
+                    </button>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+                {/* </CardContent> */}
+              </div>
+              // </Card>
             ))}
           </div>
 
@@ -171,8 +203,10 @@ export function WellnessConsultation() {
               <p className="text-sm text-gray-600">Round-the-clock wellness support</p>
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+        {/* </CardContent> */}
+      </div>
+      {/* </Card> */}
     </div>
   );
 }
