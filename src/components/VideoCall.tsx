@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent } from './ui/card';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
+// import { Card, CardContent } from './ui/card';
+// import { Button } from './ui/button';
+// import { Badge } from './ui/badge';
 import { 
   Video, 
   VideoOff, 
@@ -72,9 +72,11 @@ const VideoCall: React.FC = () => {
           <div className="flex items-center justify-center gap-2 text-xs md:text-sm text-gray-600">
             <Clock className="w-3 h-3 md:w-4 md:h-4" />
             <span>Duration: {formatTime(callDuration)}</span>
-            <Badge variant={isConnected ? "default" : "secondary"} className="text-xs">
+            {/* <Badge variant={isConnected ? "default" : "secondary"} className="text-xs"> */}
+            <span className={`text-xs px-2 py-0.5 rounded ${isConnected ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"}`}>
               {isConnected ? "Connected" : "Connecting..."}
-            </Badge>
+            </span>
+            {/* </Badge> */}
           </div>
         </div>
 
@@ -82,8 +84,10 @@ const VideoCall: React.FC = () => {
         <div className="grid lg:grid-cols-4 gap-3 md:gap-6">
           {/* Main Video Area */}
           <div className="lg:col-span-3">
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
+            {/* <Card className="overflow-hidden"> */}
+            <div className="overflow-hidden border rounded-lg">
+              {/* <CardContent className="p-0"> */}
+              <div className="p-0">
                 {/* Specialist Video */}
                 <div className="relative aspect-video md:aspect-video bg-gradient-to-br from-blue-600 to-purple-700 text-white min-h-[250px] md:min-h-[400px]">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -124,69 +128,98 @@ const VideoCall: React.FC = () => {
 
                   {/* Connection Status */}
                   <div className="absolute top-4 left-4">
-                    <Badge variant={isConnected ? "default" : "secondary"}>
-                      <div className={`w-2 h-2 rounded-full mr-2 ${isConnected ? 'bg-green-400' : 'bg-yellow-400'}`}></div>
+                    {/* <Badge variant={isConnected ? "default" : "secondary"}> */}
+                    <span className={`inline-flex items-center px-2 py-1 text-xs rounded ${isConnected ? "bg-green-500 text-white" : "bg-yellow-500 text-black"}`}>
+                      <div className={`w-2 h-2 rounded-full mr-2 ${isConnected ? 'bg-white' : 'bg-black'}`}></div>
                       {isConnected ? 'Live' : 'Connecting'}
-                    </Badge>
+                    </span>
+                    {/* </Badge> */}
                   </div>
                 </div>
 
                 {/* Call Controls */}
                 <div className="p-3 md:p-6 bg-white border-t">
                   <div className="flex items-center justify-center gap-2 md:gap-4">
-                    <Button
+                    {/* <Button
                       variant={isAudioOn ? "default" : "destructive"}
                       size="lg"
                       onClick={toggleAudio}
                       className="rounded-full w-12 h-12 md:w-14 md:h-14"
+                    > */}
+                    <button
+                      onClick={toggleAudio}
+                      className={`rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center ${isAudioOn ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
                     >
                       {isAudioOn ? <Mic className="w-4 h-4 md:w-6 md:h-6" /> : <MicOff className="w-4 h-4 md:w-6 md:h-6" />}
-                    </Button>
+                    {/* </Button> */}
+                    </button>
 
-                    <Button
+                    {/* <Button
                       variant={isVideoOn ? "default" : "destructive"}
                       size="lg"
                       onClick={toggleVideo}
                       className="rounded-full w-12 h-12 md:w-14 md:h-14"
+                    > */}
+                     <button
+                      onClick={toggleVideo}
+                      className={`rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center ${isVideoOn ? 'bg-blue-500 hover:bg-blue-600 text-white' : 'bg-red-500 hover:bg-red-600 text-white'}`}
                     >
                       {isVideoOn ? <Video className="w-4 h-4 md:w-6 md:h-6" /> : <VideoOff className="w-4 h-4 md:w-6 md:h-6" />}
-                    </Button>
+                    {/* </Button> */}
+                    </button>
 
-                    <Button
+                    {/* <Button
                       variant="destructive"
                       size="lg"
                       onClick={handleEndCall}
                       className="rounded-full w-12 h-12 md:w-14 md:h-14"
+                    > */}
+                    <button
+                      onClick={handleEndCall}
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white"
                     >
                       <PhoneOff className="w-4 h-4 md:w-6 md:h-6" />
-                    </Button>
+                    {/* </Button> */}
+                    </button>
 
-                    <Button
+                    {/* <Button
                       variant="outline"
                       size="lg"
                       className="rounded-full w-12 h-12 md:w-14 md:h-14"
+                    > */}
+                    <button
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border bg-white hover:bg-gray-100 text-gray-700"
                     >
                       <MessageCircle className="w-4 h-4 md:w-6 md:h-6" />
-                    </Button>
+                    {/* </Button> */}
+                    </button>
 
-                    <Button
+                    {/* <Button
                       variant="outline"
                       size="lg"
                       className="rounded-full w-12 h-12 md:w-14 md:h-14"
+                    > */}
+                    <button
+                      className="rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center border bg-white hover:bg-gray-100 text-gray-700"
                     >
                       <Settings className="w-4 h-4 md:w-6 md:h-6" />
-                    </Button>
+                    {/* </Button> */}
+                    </button>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              {/* </CardContent> */}
+              </div>
+            {/* </Card> */}
+            </div>
           </div>
 
           {/* Sidebar */}
           <div className="space-y-3 md:space-y-6">
             {/* Specialist Info */}
-            <Card>
-              <CardContent className="p-4 md:p-6">
+            {/* <Card> */}
+            <div className="border rounded-lg p-4 md:p-6">
+              {/* <CardContent className="p-4 md:p-6"> */}
+              <div>
                 <h3 className="font-semibold mb-4">Consultation Details</h3>
                 <div className="space-y-3">
                   <div>
@@ -206,12 +239,16 @@ const VideoCall: React.FC = () => {
                     <p className="font-mono text-sm">{callId}</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              {/* </CardContent> */}
+              </div>
+            {/* </Card> */}
+            </div>
 
             {/* Session Notes */}
-            <Card>
-              <CardContent className="p-4 md:p-6">
+            {/* <Card> */}
+            <div className="border rounded-lg p-4 md:p-6">
+              {/* <CardContent className="p-4 md:p-6"> */}
+              <div>
                 <h3 className="font-semibold mb-4">Session Notes</h3>
                 <div className="space-y-3 text-sm">
                   <div className="p-3 bg-blue-50 rounded-lg">
@@ -225,25 +262,36 @@ const VideoCall: React.FC = () => {
                     </div>
                   )}
                 </div>
-              </CardContent>
-            </Card>
+              {/* </CardContent> */}
+              </div>
+            {/* </Card> */}
+            </div>
 
             {/* Emergency Button */}
-            <Card className="border-red-200">
-              <CardContent className="p-4 md:p-6">
-                <Button 
+            {/* <Card className="border-red-200"> */}
+            <div className="border border-red-200 rounded-lg p-4 md:p-6">
+              {/* <CardContent className="p-4 md:p-6"> */}
+              <div>
+                {/* <Button
                   variant="destructive" 
                   className="w-full"
                   onClick={() => navigate('/consultation')}
+                > */}
+                <button
+                  onClick={() => navigate('/consultation')}
+                  className="w-full flex items-center justify-center p-2 bg-red-500 hover:bg-red-600 text-white rounded"
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Emergency Help
-                </Button>
+                {/* </Button> */}
+                </button>
                 <p className="text-xs text-gray-600 mt-2 text-center">
                   For immediate medical emergencies, call 911
                 </p>
-              </CardContent>
-            </Card>
+              {/* </CardContent> */}
+              </div>
+            {/* </Card> */}
+            </div>
           </div>
         </div>
 

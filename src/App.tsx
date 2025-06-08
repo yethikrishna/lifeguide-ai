@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+// import { Card, CardContent } from '@/components/ui/card';
+// import { Button } from '@/components/ui/button';
+// import { Badge } from '@/components/ui/badge';
 import { 
   Heart, 
   Moon, 
@@ -16,7 +16,7 @@ import {
   Github,
   ExternalLink
 } from 'lucide-react';
-import { WellnessDashboard } from '@/components/WellnessDashboard';
+// import { WellnessDashboard } from '@/components/WellnessDashboard';
 import { WellnessChat } from '@/components/WellnessChat';
 import { SleepAssessment } from '@/components/SleepAssessment';
 import { ModalStatus } from '@/components/ModalStatus';
@@ -43,9 +43,9 @@ function Navigation() {
             <div className="flex items-center space-x-2">
               <Heart className="w-8 h-8 text-red-500" />
               <h1 className="text-xl font-bold text-gray-900">LifeGuide AI</h1>
-              <Badge variant="secondary" className="text-xs">
+              {/* <Badge variant="secondary" className="text-xs">
                 MiniMax Powered
-              </Badge>
+              </Badge> */}
             </div>
             
             <div className="flex items-center space-x-1 ml-8">
@@ -54,14 +54,19 @@ function Navigation() {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link key={item.path} to={item.path}>
-                    <Button
+                    {/* <Button
                       variant={isActive ? "default" : "ghost"}
                       size="sm"
                       className="flex items-center space-x-2"
                     >
                       <Icon className="w-4 h-4" />
                       <span>{item.label}</span>
-                    </Button>
+                    </Button> */}
+                    {/* Temp replacement for Button */}
+                    <span className={`p-2 flex items-center space-x-2 ${isActive ? 'bg-gray-200' : ''}`}>
+                      <Icon className="w-4 h-4" />
+                      <span>{item.label}</span>
+                    </span>
                   </Link>
                 );
               })}
@@ -89,9 +94,9 @@ function Navigation() {
             <Heart className="w-6 h-6 text-red-500" />
             <h1 className="text-lg font-bold text-gray-900">LifeGuide AI</h1>
           </div>
-          <Badge variant="secondary" className="text-xs">
+          {/* <Badge variant="secondary" className="text-xs">
             MiniMax
-          </Badge>
+          </Badge> */}
         </div>
       </nav>
 
@@ -136,43 +141,45 @@ function LandingPage() {
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
               <Link to="/dashboard">
-                <Button size="lg" className="w-full sm:w-auto">
+                {/* <Button size="lg" className="w-full sm:w-auto">
                   Start Your Wellness Journey
-                </Button>
+                </Button> */}
+                <span className="p-3 bg-blue-500 text-white rounded">Start Your Wellness Journey</span>
               </Link>
               <Link to="/chat">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                {/* <Button size="lg" variant="outline" className="w-full sm:w-auto">
                   Chat with AI Experts
-                </Button>
+                </Button> */}
+                <span className="p-3 border border-blue-500 text-blue-500 rounded">Chat with AI Experts</span>
               </Link>
             </div>
 
             {/* Key Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-16 px-4">
-              <Card>
+              {/* <Card>
                 <CardContent className="p-4 md:p-6 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1 md:mb-2">5</div>
                   <div className="text-sm md:text-base text-gray-600">AI Agents</div>
                 </CardContent>
-              </Card>
-              <Card>
+              </Card> */}
+              {/* <Card>
                 <CardContent className="p-4 md:p-6 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-purple-600 mb-1 md:mb-2">$280</div>
                   <div className="text-sm md:text-base text-gray-600">AI Credits</div>
                 </CardContent>
-              </Card>
-              <Card>
+              </Card> */}
+              {/* <Card>
                 <CardContent className="p-4 md:p-6 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1 md:mb-2">24/7</div>
                   <div className="text-sm md:text-base text-gray-600">Support</div>
                 </CardContent>
-              </Card>
-              <Card>
+              </Card> */}
+              {/* <Card>
                 <CardContent className="p-4 md:p-6 text-center">
                   <div className="text-2xl md:text-3xl font-bold text-orange-600 mb-1 md:mb-2">100%</div>
                   <div className="text-sm md:text-base text-gray-600">Clinical AI</div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </div>
@@ -191,7 +198,7 @@ function LandingPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <Moon className="w-8 h-8 text-purple-500 mr-3" />
@@ -202,9 +209,9 @@ function LandingPage() {
                 </p>
                 <Badge variant="secondary">$15B+ Market Gap</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <Heart className="w-8 h-8 text-red-500 mr-3" />
@@ -215,9 +222,9 @@ function LandingPage() {
                 </p>
                 <Badge variant="secondary">Clinical Grade</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <Brain className="w-8 h-8 text-blue-500 mr-3" />
@@ -228,9 +235,9 @@ function LandingPage() {
                 </p>
                 <Badge variant="secondary">Crisis Detection</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <AlertTriangle className="w-8 h-8 text-orange-500 mr-3" />
@@ -241,9 +248,9 @@ function LandingPage() {
                 </p>
                 <Badge variant="secondary">Life Saving</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            <Card className="hover:shadow-lg transition-shadow">
+            {/* <Card className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <Apple className="w-8 h-8 text-green-500 mr-3" />
@@ -254,9 +261,9 @@ function LandingPage() {
                 </p>
                 <Badge variant="secondary">Personalized</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
 
-            <Card className="hover:shadow-lg transition-shadow border-2 border-blue-200">
+            {/* <Card className="hover:shadow-lg transition-shadow border-2 border-blue-200">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <BarChart3 className="w-8 h-8 text-indigo-500 mr-3" />
@@ -267,7 +274,7 @@ function LandingPage() {
                 </p>
                 <Badge className="bg-blue-100 text-blue-800">World First</Badge>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>
@@ -282,9 +289,10 @@ function LandingPage() {
             Join the revolution in AI-powered personalized healthcare
           </p>
           <Link to="/dashboard">
-            <Button size="lg" variant="secondary">
+            {/* <Button size="lg" variant="secondary">
               Get Started Now
-            </Button>
+            </Button> */}
+             <span className="p-3 bg-white text-blue-500 rounded">Get Started Now</span>
           </Link>
         </div>
       </div>
@@ -318,7 +326,8 @@ function ChatPage() {
 function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-4 md:py-8">
-      <WellnessDashboard />
+      {/* <WellnessDashboard /> */}
+      <div>Wellness Dashboard (Content Commented Out)</div>
     </div>
   );
 }
