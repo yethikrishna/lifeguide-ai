@@ -31,7 +31,7 @@ export function WellnessConsultation() {
     await cometChatService.initializeChatSystem();
   };
 
-  const startVideoConsultation = async (specialistId: string, specialistType: string) => {
+  const startVideoConsultation = async (_specialistId: string, specialistType: string) => {
     setIsLoading(true);
     try {
       const consultation = await cometChatService.createWellnessConsultation(
