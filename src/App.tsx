@@ -22,7 +22,6 @@ import { SleepAssessment } from '@/components/SleepAssessment';
 import { ModalStatus } from '@/components/ModalStatus';
 import { WellnessConsultation } from '@/components/WellnessConsultation';
 import VideoCall from '@/components/VideoCall';
-import './App.css';
 
 function Navigation() {
   const location = useLocation();
